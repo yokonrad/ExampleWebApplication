@@ -22,8 +22,12 @@ namespace ExampleWebApplication
                 o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
             builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            builder.Services.AddRouting(o => o.LowercaseUrls = true);
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddRouting(o =>
+            {
+                o.LowercaseUrls = true;
+                o.LowercaseQueryStrings = true;
+            });
+            builder.Services.AddSwaggerGen(o => o.DescribeAllParametersInCamelCase());
             builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
             builder.Services.AddSingleton<ExampleRepository>();
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
