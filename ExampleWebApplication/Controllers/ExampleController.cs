@@ -1,6 +1,5 @@
 ﻿using ExampleWebApplication.Commands;
 using ExampleWebApplication.Dtos;
-using ExampleWebApplication.Options;
 using ExampleWebApplication.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +11,9 @@ namespace ExampleWebApplication.Controllers
     public class ExampleController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ExampleDto>>> GetAll([Bind(Prefix = "OrderBy")] GetAllOrderByOptions getAllOrderByOptions)
+        public async Task<ActionResult<IEnumerable<ExampleDto>>> GetAll([FromQuery] GetAllDto getAllDto)
         {
-            return Ok(await mediator.Send(new GetAllQuery { OrderBy = getAllOrderByOptions }));
+            return Ok(await mediator.Send(new GetAllQuery { OrderBy = getAllDto.OrderBy }));
         }
 
         [HttpGet("{id:int}")]
