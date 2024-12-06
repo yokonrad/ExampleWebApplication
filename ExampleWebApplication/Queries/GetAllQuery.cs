@@ -20,7 +20,9 @@ public class GetAllQueryHandler(ExampleRepository exampleRepository) : IRequestH
         {
             GetAllOrderByOptions.None => getAll,
             GetAllOrderByOptions.ById => getAll.OrderBy(x => x.Id),
-            GetAllOrderByOptions.ByName => getAll.OrderBy(x => x.Name),
+            GetAllOrderByOptions.ByName => getAll.OrderBy(x => x.Name).ThenBy(x => x.Id),
+            GetAllOrderByOptions.ByDescription => getAll.OrderBy(x => x.Description).ThenBy(x => x.Id),
+            GetAllOrderByOptions.ByVisible => getAll.OrderBy(x => x.Visible).ThenBy(x => x.Id),
             _ => throw new NotImplementedException(),
         };
     }

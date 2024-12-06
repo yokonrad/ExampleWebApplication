@@ -11,6 +11,8 @@ namespace ExampleWebApplication.Commands;
 public class CreateCommand : IRequest<Result<ExampleDto?>>
 {
     public string Name { get; init; }
+    public string? Description { get; init; }
+    public bool Visible { get; init; }
 }
 
 public class CreateCommandValidator : AbstractValidator<CreateCommand>
@@ -18,6 +20,7 @@ public class CreateCommandValidator : AbstractValidator<CreateCommand>
     public CreateCommandValidator()
     {
         RuleFor(x => x.Name).NotEmpty().MinimumLength(3);
+        RuleFor(x => x.Description).MinimumLength(3);
     }
 }
 

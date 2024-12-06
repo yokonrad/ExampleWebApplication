@@ -16,7 +16,7 @@ namespace ExampleWebApplication.Repositories
 
         public async Task<ExampleDto?> GetById(int id)
         {
-            return await Task.FromResult(mapper.Map<ExampleDto>(_examples.FirstOrDefault(x => x.Id == id)));
+            return await Task.FromResult(mapper.Map<ExampleDto>(_examples.Find(x => x.Id == id)));
         }
 
         public async Task<ExampleDto?> Create(CreateExampleDto createExampleDto)
@@ -26,7 +26,7 @@ namespace ExampleWebApplication.Repositories
             var random = new Random();
             var id = random.Next(_examples.Min(x => x.Id), _examples.Max(x => x.Id));
 
-            while (_examples.Any(x => x.Id == id))
+            while (_examples.Exists(x => x.Id == id))
             {
                 id = random.Next(_examples.Min(x => x.Id), _examples.Max(x => x.Id));
             }
@@ -44,9 +44,11 @@ namespace ExampleWebApplication.Repositories
 
             if (index < 0) return null;
 
-            var example = mapper.Map<Example>(updateExampleDto);
+            var example = _examples[index];
 
-            example.Id = id;
+            example.Name = updateExampleDto.Name ?? example.Name;
+            example.Description = updateExampleDto.Description ?? example.Description;
+            example.Visible = updateExampleDto.Visible;
 
             _examples[index] = example;
 

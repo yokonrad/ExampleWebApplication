@@ -11,7 +11,9 @@ namespace ExampleWebApplication.Commands;
 public class UpdateCommand : IRequest<Result<ExampleDto?>>
 {
     public int Id { get; init; }
-    public string Name { get; init; }
+    public string? Name { get; init; }
+    public string? Description { get; init; }
+    public bool Visible { get; init; }
 }
 
 public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
@@ -19,7 +21,8 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
     public UpdateCommandValidator()
     {
         RuleFor(x => x.Id).NotEmpty().GreaterThan(0);
-        RuleFor(x => x.Name).NotEmpty().MinimumLength(3);
+        RuleFor(x => x.Name).MinimumLength(3);
+        RuleFor(x => x.Description).MinimumLength(3);
     }
 }
 
