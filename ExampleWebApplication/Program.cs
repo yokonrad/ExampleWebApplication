@@ -22,7 +22,6 @@ namespace ExampleWebApplication
                 o.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             });
             builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            builder.Services.AddOpenApi();
             builder.Services.AddRouting(o => o.LowercaseUrls = true);
             builder.Services.AddSwaggerGen();
             builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
@@ -33,7 +32,6 @@ namespace ExampleWebApplication
 
             if (app.Environment.IsDevelopment())
             {
-                app.MapOpenApi();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
