@@ -27,6 +27,7 @@ public class DeleteCommandHandler(IMediator mediator, IValidator<DeleteCommand> 
         var validated = validator.Validate(deleteCommand);
 
         if (!validated.IsValid) return Result.Fail(validated.Errors.ConvertAll(x => x.ErrorMessage));
+
         var exampleDto = await exampleRepository.Delete(deleteCommand.Id);
 
         await mediator.Publish(new DeletedNotification(exampleDto), cancellationToken);
