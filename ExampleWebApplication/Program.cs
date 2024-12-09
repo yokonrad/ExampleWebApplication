@@ -29,7 +29,7 @@ namespace ExampleWebApplication
             });
             builder.Services.AddSwaggerGen(o => o.DescribeAllParametersInCamelCase());
             builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-            builder.Services.AddSingleton<ExampleRepository>();
+            builder.Services.AddSingleton<IExampleRepository, ExampleRepository>();
             builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
             var app = builder.Build();

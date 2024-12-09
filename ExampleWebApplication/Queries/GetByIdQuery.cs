@@ -19,7 +19,7 @@ public class GetByIdQueryValidator : AbstractValidator<GetByIdQuery>
     }
 }
 
-public class GetByIdQueryHandler(IValidator<GetByIdQuery> validator, ExampleRepository exampleRepository) : IRequestHandler<GetByIdQuery, Result<ExampleDto?>>
+public class GetByIdQueryHandler(IValidator<GetByIdQuery> validator, IExampleRepository exampleRepository) : IRequestHandler<GetByIdQuery, Result<ExampleDto?>>
 {
     public async Task<Result<ExampleDto?>> Handle(GetByIdQuery getByIdQuery, CancellationToken cancellationToken)
     {

@@ -26,7 +26,7 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
     }
 }
 
-public class UpdateCommandHandler(IMapper mapper, IMediator mediator, IValidator<UpdateCommand> validator, ExampleRepository exampleRepository) : IRequestHandler<UpdateCommand, Result<ExampleDto?>>
+public class UpdateCommandHandler(IMapper mapper, IMediator mediator, IValidator<UpdateCommand> validator, IExampleRepository exampleRepository) : IRequestHandler<UpdateCommand, Result<ExampleDto?>>
 {
     public async Task<Result<ExampleDto?>> Handle(UpdateCommand updateCommand, CancellationToken cancellationToken)
     {

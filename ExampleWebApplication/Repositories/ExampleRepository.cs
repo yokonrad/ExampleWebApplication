@@ -1,13 +1,12 @@
-﻿using AutoFixture;
-using AutoMapper;
+﻿using AutoMapper;
 using ExampleWebApplication.Dtos;
 using ExampleWebApplication.Entities;
 
 namespace ExampleWebApplication.Repositories
 {
-    public class ExampleRepository(IMapper mapper)
+    public class ExampleRepository(IMapper mapper) : IExampleRepository
     {
-        private readonly List<Example> _examples = new Fixture().Build<Example>().CreateMany(10).ToList();
+        private readonly List<Example> _examples = [];
 
         public async Task<IEnumerable<ExampleDto>> GetAll()
         {

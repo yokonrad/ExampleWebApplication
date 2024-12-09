@@ -20,7 +20,7 @@ public class DeleteCommandValidator : AbstractValidator<DeleteCommand>
     }
 }
 
-public class DeleteCommandHandler(IMediator mediator, IValidator<DeleteCommand> validator, ExampleRepository exampleRepository) : IRequestHandler<DeleteCommand, Result<ExampleDto?>>
+public class DeleteCommandHandler(IMediator mediator, IValidator<DeleteCommand> validator, IExampleRepository exampleRepository) : IRequestHandler<DeleteCommand, Result<ExampleDto?>>
 {
     public async Task<Result<ExampleDto?>> Handle(DeleteCommand deleteCommand, CancellationToken cancellationToken)
     {

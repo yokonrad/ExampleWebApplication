@@ -24,7 +24,7 @@ public class CreateCommandValidator : AbstractValidator<CreateCommand>
     }
 }
 
-public class CreateCommandHandler(IMapper mapper, IMediator mediator, IValidator<CreateCommand> validator, ExampleRepository exampleRepository) : IRequestHandler<CreateCommand, Result<ExampleDto?>>
+public class CreateCommandHandler(IMapper mapper, IMediator mediator, IValidator<CreateCommand> validator, IExampleRepository exampleRepository) : IRequestHandler<CreateCommand, Result<ExampleDto?>>
 {
     public async Task<Result<ExampleDto?>> Handle(CreateCommand createCommand, CancellationToken cancellationToken)
     {

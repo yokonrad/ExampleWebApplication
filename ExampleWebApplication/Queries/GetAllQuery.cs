@@ -10,7 +10,7 @@ public class GetAllQuery : IRequest<IEnumerable<ExampleDto>>
     public GetAllOrderByOptions OrderBy { get; init; }
 }
 
-public class GetAllQueryHandler(ExampleRepository exampleRepository) : IRequestHandler<GetAllQuery, IEnumerable<ExampleDto>>
+public class GetAllQueryHandler(IExampleRepository exampleRepository) : IRequestHandler<GetAllQuery, IEnumerable<ExampleDto>>
 {
     public async Task<IEnumerable<ExampleDto>> Handle(GetAllQuery getAllQuery, CancellationToken cancellationToken)
     {
